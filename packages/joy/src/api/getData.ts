@@ -1,7 +1,7 @@
-import { BASE_URL } from '../constant/index.js';
+import { BASE_URL } from '../constant/index';
 
-export default async function getData(url, method, data) {
-  const config = {
+export default async function getData(url: string, method: string, data: any) {
+  const config: any = {
     method: method,
     headers: new Headers({ 'content-type': 'application/json' }),
   };

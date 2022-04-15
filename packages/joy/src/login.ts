@@ -1,8 +1,8 @@
 import '../assets/page/login.css';
-import { $, $btn_type } from './util/dom.js';
-import { login } from './api/index.js';
+import { $, $btn_type } from './util/dom';
+import { login } from './api/index';
 
-$btn_type('login').addEventListener('click', async (event) => {
+$btn_type('login').addEventListener('click', async (event: any) => {
   event.preventDefault();
 
   const email = $('#login-email').value;

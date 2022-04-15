@@ -1,10 +1,10 @@
 //한 개의 요소
-export const $ = (selector) => document.querySelector(selector);
+export const $ = (selector: any) => document.querySelector(selector);
 //버튼 타입별 요소
-export const $btn_type = (type) => $(`button[data-submit="${type}"]`);
+export const $btn_type = (type: any) => $(`button[data-submit="${type}"]`);
 
 //여러 개의 요소
-export const $all = (selector) => document.querySelectorAll(selector);
+export const $all = (selector: any) => document.querySelectorAll(selector);
 
 //로딩 이미지 생성
 //토글이란 on/off의 스위치 개념. 현재는 loading이라는 클래스가 나타날 때까지 로딩 이미지가 생성됨.

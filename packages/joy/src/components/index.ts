@@ -1,7 +1,7 @@
 import { RANDOM_IMG_URL } from '../constant';
 
 //Explore - 북마크 설정
-export function heartBtnWrapper(globalIndex, random) {
+export function heartBtnWrapper(globalIndex: any, random: any) {
   const buttonWrapper = document.createElement('div');
   buttonWrapper.setAttribute('class', 'button-wrapper');
   buttonWrapper.innerHTML = `
@@ -22,12 +22,12 @@ export function explore_tab() {
 }
 
 //Saved
-export function saved_tab(result) {
+export function saved_tab(result: any) {
   return `
     <div class="container">
     ${result
       .map(
-        ({ _id, url }, index) => `
+        ({ _id, url }: any, index: any) => `
       <div class="pin">
         <div class="button-wrapper">
           <div class="anim-icon anim-icon-md heart">

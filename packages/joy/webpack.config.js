@@ -13,13 +13,14 @@ module.exports = {
     historyApiFallback: true,
     watchFiles: ['src/**/*.ts', 'public/**/*'],
   },
+  
   // devtool: 'inline-source-map',
   target: ['es5', 'web'],
   entry: {
     // 각 html에 필요한 entry 파일
-    index: './src/main.js',
-    login: './src/login.js',
-    signup: './src/signup.js',
+    index: './src/main.ts',
+    login: './src/login.ts',
+    signup: './src/signup.ts',
   },
   output: {
     path: path.resolve(__dirname, 'public'),
