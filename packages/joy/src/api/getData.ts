@@ -1,9 +1,15 @@
-import { BASE_URL } from '../constant/index';
+import { BASE_URL } from "../constant/index";
 
-export default async function getData(url: string, method: string, data: any) {
-  const config: any = {
+interface configInterface {
+  method: string;
+  headers: Headers;
+  body?: BodyInit;
+}
+
+export default async function getData<T>(url: string, method: string, data: T) {
+  const config: configInterface = {
     method: method,
-    headers: new Headers({ 'content-type': 'application/json' }),
+    headers: new Headers({ "content-type": "application/json" }),
   };
   if (data) config.body = JSON.stringify(data);
   const response = await fetch(BASE_URL + url, config);

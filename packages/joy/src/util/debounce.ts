@@ -1,14 +1,19 @@
-function throttle(
-  delay: any,
-  callback: any,
-  debounceMode: any,
-  noTrailing?: any
-) {
-  let timeoutID: any;
+interface ThrottleInterface {
+  delay: number;
+  noTrailing?: boolean | (() => void);
+  callback?: () => void;
+  debounceMode?: boolean | (() => void);
+}
+
+function throttle({
+  delay,
+  noTrailing,
+  callback,
+  debounceMode,
+}: ThrottleInterface) {
+  let timeoutID: ReturnType<typeof setTimeout> | undefined;
   let cancelled = false;
   let lastExec = 0;
-
-  console.log(callback);
 
   function clearExistingTimeout() {
     if (timeoutID === undefined) return;
@@ -20,22 +25,22 @@ function throttle(
     cancelled = true;
   }
 
-  if (typeof noTrailing !== 'boolean') {
+  if (typeof noTrailing !== "boolean") {
     debounceMode = callback;
     callback = noTrailing;
     noTrailing = undefined;
   }
 
-  function wrapper (...args: any) {
+  function wrapper(this: void, ...args: []) {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
-    const self = globalThis;
+    const self = this;
     const elapsed = Date.now() - lastExec;
 
     if (cancelled) return;
 
     function exec() {
       lastExec = Date.now();
-      callback.apply(self, args);
+      callback?.apply(self, args);
     }
 
     function clear() {
@@ -60,5 +65,5 @@ function throttle(
   return wrapper;
 }
 
-export const debounce = (callback: any, delay: any) =>
-  throttle(delay, callback, false);
+export const debounce = (callback: () => any, delay: number) =>
+  throttle({ delay, noTrailing: false, callback, debounceMode: false });
